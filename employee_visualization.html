@@ -10,3 +10,39 @@
 <p>Submitted by: 23f3004196@ds.study.iitm.ac.in</p>
 </body>
 </html>
+
+<!--
+PYTHON CODE USED:
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import base64
+from io import BytesIO
+
+data = {
+    "EmployeeID": range(1, 101),
+    "Name": [f"Employee_{i}" for i in range(1, 101)],
+    "Department": [
+        "Sales", "HR", "R&D", "Finance", "Marketing",
+        "Operations", "R&D", "Sales", "Finance", "R&D"
+    ] * 10,
+    "Region": ["North", "South", "East", "West", "Central"] * 20,
+    "PerformanceScore": [60, 70, 85, 90, 75] * 20
+}
+
+df = pd.DataFrame(data)
+
+rd_count = (df["Department"] == "R&D").sum()
+print("Frequency count of R&D department:", rd_count)
+
+plt.figure(figsize=(8, 5))
+plt.hist(df["Department"], bins=len(df["Department"].unique()))
+plt.xlabel("Departments")
+plt.ylabel("Frequency")
+plt.title("Distribution of Employees Across Departments")
+
+buffer = BytesIO()
+plt.savefig(buffer, format="png", dpi=100, bbox_inches="tight")
+buffer.seek(0)
+img_base64 = base64.b64encode(buffer.read()).decode("utf-8")
+-->
